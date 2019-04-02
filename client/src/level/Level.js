@@ -14,6 +14,7 @@ class Level extends Component {
   state = { code };
 
   render() {
+    fetch('/levels')
     return (
       <div className="Level">
         <Editor

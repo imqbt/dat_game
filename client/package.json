@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3333",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "prismjs": "^1.16.0",
