@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Link to="/level">
+        <Link to="/game">
           <Button variant="contained" color="primary">
             Commencer
           </Button>

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Home from './level/Home'
-import Level from './level/Level'
+import Home from './game/Home'
+import Game from './game/Game'
 import NotFound from './common/NotFound'
 import { Route, HashRouter as Router, Switch } from 'react-router-dom'
 import { Provider } from 'mobx-react';
@@ -15,7 +15,7 @@ const providerAndRouting = (
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/level" component={Level} />
+        <Route path="/game" component={Game} />
         <Route component={NotFound} />
       </Switch>
     </Router>

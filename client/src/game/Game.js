@@ -11,7 +11,7 @@ const code = `function add() {
 }
 `;
 
-class Level extends Component {
+class Game extends Component {
   state = { code };
 
   render() {
@@ -44,4 +44,4 @@ class Level extends Component {
   }
 }
 
-export default inject('TimerStore')(observer(Level));
+export default inject('TimerStore')(observer(Game));
