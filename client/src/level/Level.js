@@ -4,6 +4,7 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+import { observer, inject } from 'mobx-react'
  
 const code = `function add() {
   console.log("asv")
@@ -15,6 +16,9 @@ class Level extends Component {
 
   render() {
     fetch('/levels')
+    setTimeout(() => this.props.TimerStore.incrementTime(), 1000)
+
+
     return (
       <div className="Level">
         <Editor
@@ -28,7 +32,7 @@ class Level extends Component {
           }}
         />
         <Button variant="contained" color="primary" onClick={() => this.execute()}>
-          Tester
+          Tester {this.props.TimerStore.currentTime}
         </Button>
       </div>
     );
@@ -40,4 +44,4 @@ class Level extends Component {
   }
 }
 
-export default Level;
+export default inject('TimerStore')(observer(Level));
