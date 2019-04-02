@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "prettier": "find src -name '*.js' | xargs prettier --no-semi --single-quote --trailing-comma es5 --write",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -28,5 +29,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^1.16.4"
+  }
 }
