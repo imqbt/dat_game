@@ -1,4 +1,4 @@
-import { observable, computed, action, decorate } from "mobx"
+import { observable, computed, action, decorate } from 'mobx'
 
 class TimerStore {
   time = 0
@@ -14,15 +14,14 @@ class TimerStore {
   }
 
   pad = num => {
-    return ("0"+num).slice(-2);
+    return ('0' + num).slice(-2)
   }
-
 }
 
 decorate(TimerStore, {
   time: observable,
   incrementTime: action,
-  currentTime: computed
+  currentTime: computed,
 })
 
 export default new TimerStore()

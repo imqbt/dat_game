@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import * as serviceWorker from './serviceWorker'
 import Home from './game/Home'
 import Game from './game/Game'
 import NotFound from './common/NotFound'
 import { Route, HashRouter as Router, Switch } from 'react-router-dom'
-import { Provider } from 'mobx-react';
-import {  } from 'mobx-react';
-import TimerStore from  './stores/TimerStore'
+import { Provider } from 'mobx-react'
+import {} from 'mobx-react'
+import TimerStore from './stores/TimerStore'
 
 const providerAndRouting = (
-  <Provider TimerStore = {TimerStore} >
+  <Provider TimerStore={TimerStore}>
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -23,4 +23,4 @@ const providerAndRouting = (
 )
 ReactDOM.render(providerAndRouting, document.getElementById('root'))
 
-serviceWorker.unregister();
+serviceWorker.unregister()
