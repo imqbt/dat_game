@@ -1,0 +1,13 @@
+version: "2"
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dat_game
+      MYSQL_USER: dat_game
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
