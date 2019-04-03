@@ -1,4 +1,9 @@
-import { runInAction, configure, observable, computed, action, decorate } from 'mobx'
+import {
+  runInAction,
+  observable,
+  action,
+  decorate,
+} from 'mobx'
 
 class LevelStore {
   currentLevel = {}
@@ -18,7 +23,10 @@ class LevelStore {
 
   nextLevel = () => {
     this.currentLevelId = this.currentLevelId + 1
-    this.currentLevel =  this.currentLevelId >= this.levels.length ? false : this.levels[this.currentLevelId]
+    this.currentLevel =
+      this.currentLevelId >= this.levels.length
+        ? false
+        : this.levels[this.currentLevelId]
   }
 }
 

@@ -23,9 +23,7 @@ class Game extends Component {
 
     return (
       <div className="Level">
-        <h1>
-          {this.props.LevelStore.currentLevel.name}
-        </h1>
+        <h1>{this.props.LevelStore.currentLevel.name}</h1>
         <Editor
           value={this.state.code}
           onValueChange={code => this.setState({ code })}
