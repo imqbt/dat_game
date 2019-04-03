@@ -9,9 +9,10 @@ import { Route, HashRouter as Router, Switch } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import {} from 'mobx-react'
 import TimerStore from './stores/TimerStore'
+import LevelStore from './stores/LevelStore'
 
 const providerAndRouting = (
-  <Provider TimerStore={TimerStore}>
+  <Provider LevelStore={LevelStore} TimerStore={TimerStore}>
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />

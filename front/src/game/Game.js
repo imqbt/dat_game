@@ -14,11 +14,18 @@ const code = `function add() {
 class Game extends Component {
   state = { code }
 
+  componentDidMount() {
+    this.props.LevelStore.loadLevels()
+  }
+
   render() {
     setTimeout(() => this.props.TimerStore.incrementTime(), 1000)
 
     return (
       <div className="Level">
+        <h1>
+          {this.props.LevelStore.currentLevel.name}
+        </h1>
         <Editor
           value={this.state.code}
           onValueChange={code => this.setState({ code })}
@@ -43,7 +50,9 @@ class Game extends Component {
   execute = () => {
     // eslint-disable-next-line
     eval(this.state.code + ' add()')
+
+    this.props.LevelStore.nextLevel()
   }
 }
 
-export default inject('TimerStore')(observer(Game))
+export default inject('TimerStore', 'LevelStore')(observer(Game))
