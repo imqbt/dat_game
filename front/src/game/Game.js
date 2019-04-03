@@ -16,11 +16,10 @@ class Game extends Component {
 
   componentDidMount() {
     this.props.LevelStore.loadLevels()
+    setInterval(this.props.TimerStore.incrementTime, 1000)
   }
 
   render() {
-    setTimeout(() => this.props.TimerStore.incrementTime(), 1000)
-
     return (
       <div className="Level">
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
