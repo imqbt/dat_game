@@ -8,6 +8,7 @@ import TimerStore from './TimerStore'
 import WebWorker from '../common/WebWorker'
 import testWorker from '../game/testWorker'
 
+
 class LevelStore {
 
   constructor() {
@@ -34,6 +35,8 @@ class LevelStore {
 
   currentTestId = 0
 
+  showNextLevelAlert = false
+
   test = []
 
   logs = []
@@ -48,6 +51,15 @@ class LevelStore {
       this.logs.push('test non valider')
     }
   } 
+
+  toogleShowNextLevelAlert = () => {
+    runInAction(() => {
+      this.showNextLevelAlert = true
+    })
+    setTimeout(() => {
+      this.showNextLevelAlert = false
+    }, 2000)
+  }
 
   loadLevels = async () => {
     const response = await fetch('/levels')
@@ -77,6 +89,7 @@ class LevelStore {
   }
 
   nextLevel = () => {
+    this.toogleShowNextLevelAlert()
     this.currentLevelId = this.currentLevelId + 1
     TimerStore.saveTime(this.currentLevelId)
     this.currentLevel =
@@ -102,6 +115,7 @@ decorate(LevelStore, {
   tests: observable,
   logs: observable,
   nextTest: action,
+  showNextLevelAlert: observable,
 })
 
 export default new LevelStore()

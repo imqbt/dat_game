@@ -7,6 +7,7 @@ import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 import { observer, inject } from 'mobx-react'
 import { Redirect } from 'react-router'
+import Snackbar from '@material-ui/core/Snackbar';
 
 class Game extends Component {
 
@@ -24,6 +25,15 @@ class Game extends Component {
 
     return (
       <div className="Level">
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={this.props.LevelStore.showNextLevelAlert}
+          autoHideDuration={3000}
+          message={<span id="message-id">Bravo, vous passez au niveau suivant</span>}
+        />
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
         <Editor
           value={this.props.LevelStore.currentLevel.code || ''}
