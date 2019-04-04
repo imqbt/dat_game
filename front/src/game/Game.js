@@ -8,13 +8,8 @@ import { observer, inject } from 'mobx-react'
 import WebWorker from '../common/WebWorker'
 import testWorker from './testWorker'
 
-const code = `function add() {
-  console.log("asv")
-}
-`
-
 class Game extends Component {
-  state = { code }
+
   worker
 
   componentDidMount() {
@@ -33,8 +28,8 @@ class Game extends Component {
       <div className="Level">
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
         <Editor
-          value={this.state.code}
-          onValueChange={code => this.setState({ code })}
+          value={this.props.LevelStore.currentLevel.code || ''}
+          onValueChange={code => this.props.LevelStore.currentLevel.code = code}
           highlight={code => highlight(code, languages.js)}
           padding={10}
           style={{
@@ -54,7 +49,8 @@ class Game extends Component {
   }
 
   execute = () => {
-    this.worker.postMessage(this.state.code + ' add()')
+    const fn = `${this.props.LevelStore.currentLevel.code}; ${this.props.LevelStore.currentLevel.functionName}(2)`
+    this.worker.postMessage(fn)
     this.props.LevelStore.nextLevel()
   }
 }
