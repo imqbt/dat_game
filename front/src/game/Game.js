@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField'
 import { observer, inject } from 'mobx-react'
 import { Redirect } from 'react-router'
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar'
 import Timer from './Timer'
 import Editor from './Editor'
 
 class Game extends Component {
-
   componentDidMount() {
     this.props.LevelStore.loadLevels()
     this.props.TimerStore.startTimer()
@@ -30,7 +29,9 @@ class Game extends Component {
           }}
           open={this.props.LevelStore.showNextLevelAlert}
           autoHideDuration={3000}
-          message={<span id="message-id">Bravo, vous passez au niveau suivant</span>}
+          message={
+            <span id="message-id">Bravo, vous passez au niveau suivant</span>
+          }
         />
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
         <Timer />

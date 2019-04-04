@@ -6,9 +6,7 @@ class EndGame extends Component {
     return (
       <div>
         Bravo, vous avez fini le jeu
-        <h2>
-          Votre score est:
-        </h2>
+        <h2>Votre score est:</h2>
         {this.hasCheated() ? <h1>TRICHEUR!!!</h1> : this.score()}
       </div>
     )
@@ -25,10 +23,12 @@ class EndGame extends Component {
   }
 
   hasCheated = () => {
-    if(this.props.TimerStore.times.length === 0) {
+    if (this.props.TimerStore.times.length === 0) {
       return true
     }
-    if (this.props.TimerStore.times.length !== this.props.LevelStore.levels.length) {
+    if (
+      this.props.TimerStore.times.length !== this.props.LevelStore.levels.length
+    ) {
       return true
     }
     return false

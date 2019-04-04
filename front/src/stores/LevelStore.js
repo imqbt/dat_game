@@ -1,26 +1,19 @@
-import {
-  runInAction,
-  observable,
-  action,
-  decorate,
-} from 'mobx'
+import { runInAction, observable, action, decorate } from 'mobx'
 import TimerStore from './TimerStore'
 import WebWorker from '../common/WebWorker'
 import testWorker from '../game/testWorker'
 
-
 class LevelStore {
-
   constructor() {
-    this.worker = new WebWorker(testWorker);
+    this.worker = new WebWorker(testWorker)
 
     this.worker.addEventListener('message', event => {
-      if(event.data.type === 'result') {
-        this.validate(event.data.content);
+      if (event.data.type === 'result') {
+        this.validate(event.data.content)
       }
-      if(event.data.type === 'error') {
-      }   
-    });
+      if (event.data.type === 'error') {
+      }
+    })
   }
 
   worker
@@ -42,7 +35,7 @@ class LevelStore {
   logs = []
 
   validate = result => {
-    const isValidated =  this.currentTest.expectedResult.data === result
+    const isValidated = this.currentTest.expectedResult.data === result
     if (isValidated) {
       this.logs.push('test valider')
       this.nextTest()
@@ -50,7 +43,7 @@ class LevelStore {
     } else {
       this.logs.push('test non valider')
     }
-  } 
+  }
 
   toogleShowNextLevelAlert = () => {
     runInAction(() => {
@@ -84,7 +77,9 @@ class LevelStore {
     if (!this.currentTestId) {
       this.nextLevel()
     }
-    const fn = `${this.currentLevel.code}; ${this.currentLevel.functionName}(${this.currentTest.arguments.data})`
+    const fn = `${this.currentLevel.code}; ${this.currentLevel.functionName}(${
+      this.currentTest.arguments.data
+    })`
     this.worker.postMessage(fn)
   }
 
@@ -94,8 +89,8 @@ class LevelStore {
     TimerStore.saveTime(this.currentLevelId)
     this.currentLevel =
       this.currentLevelId >= this.levels.length
-      ? false
-      : this.levels[this.currentLevelId]
+        ? false
+        : this.levels[this.currentLevelId]
     if (this.currentLevel !== false) {
       this.loadTests(this.currentLevel.uuid)
       console.log(this.currentTestId)
@@ -106,8 +101,8 @@ class LevelStore {
     this.currentTestId = this.currentTestId + 1
     this.currentTest =
       this.currentTestId >= this.tests.length
-      ? false
-      : this.tests[this.currentTestId]
+        ? false
+        : this.tests[this.currentTestId]
   }
 }
 

@@ -10,7 +10,7 @@ class Editor extends Component {
     return (
       <InputEditor
         value={this.props.LevelStore.currentLevel.code || ''}
-        onValueChange={code => this.props.LevelStore.currentLevel.code = code}
+        onValueChange={code => (this.props.LevelStore.currentLevel.code = code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
         style={{

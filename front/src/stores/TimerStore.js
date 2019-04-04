@@ -20,7 +20,7 @@ class TimerStore {
   }
 
   saveTime = level => {
-    this.times.push({level: level, time: this.currentTime})
+    this.times.push({ level: level, time: this.currentTime })
   }
 
   pad = num => {
