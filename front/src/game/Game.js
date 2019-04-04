@@ -8,6 +8,8 @@ import { observer, inject } from 'mobx-react'
 import WebWorker from '../common/WebWorker'
 import testWorker from './testWorker'
 
+import { Redirect } from 'react-router'
+
 class Game extends Component {
 
   worker
@@ -29,11 +31,15 @@ class Game extends Component {
 
   validate = result => {
     const isValidated =  this.props.LevelStore.currentTest.expectedResult.data === result
-    console.log('is validated ' + isValidated)
+    if (isValidated) {
+      this.props.LevelStore.nextLevel()
+    }
   }
 
   render() {
-    console.log(this.props.TimerStore.times)
+    if (!this.props.LevelStore.currentLevel) {
+      return <Redirect to="/endgame" push={true} />
+    }
     return (
       <div className="Level">
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
@@ -61,7 +67,6 @@ class Game extends Component {
   execute = () => {
     const fn = `${this.props.LevelStore.currentLevel.code}; ${this.props.LevelStore.currentLevel.functionName}(${this.props.LevelStore.currentTest.arguments.data})`
     this.worker.postMessage(fn)
-    this.props.LevelStore.nextLevel()
   }
 }
 
