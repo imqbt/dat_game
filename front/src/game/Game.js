@@ -8,6 +8,7 @@ import 'prismjs/components/prism-javascript'
 import { observer, inject } from 'mobx-react'
 import { Redirect } from 'react-router'
 import Snackbar from '@material-ui/core/Snackbar';
+import Timer from './Timer'
 
 class Game extends Component {
 
@@ -35,6 +36,7 @@ class Game extends Component {
           message={<span id="message-id">Bravo, vous passez au niveau suivant</span>}
         />
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
+        <Timer/>
         <Editor
           value={this.props.LevelStore.currentLevel.code || ''}
           onValueChange={code => this.props.LevelStore.currentLevel.code = code}
@@ -50,7 +52,7 @@ class Game extends Component {
           color="primary"
           onClick={() => this.execute()}
         >
-          Tester {this.props.TimerStore.currentTime}
+          Tester
         </Button>
         <TextField
           disabled
