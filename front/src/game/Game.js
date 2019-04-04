@@ -5,6 +5,8 @@ import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 import { observer, inject } from 'mobx-react'
+import WebWorker from '../common/WebWorker'
+import testWorker from './testWorker'
 
 const code = `function add() {
   console.log("asv")
@@ -13,10 +15,17 @@ const code = `function add() {
 
 class Game extends Component {
   state = { code }
+  worker
 
   componentDidMount() {
     this.props.LevelStore.loadLevels()
     setInterval(this.props.TimerStore.incrementTime, 1000)
+
+    this.worker = new WebWorker(testWorker);
+    
+    this.worker.addEventListener('message', event => {
+      console.log('event in Game', event)
+    });
   }
 
   render() {
@@ -45,9 +54,7 @@ class Game extends Component {
   }
 
   execute = () => {
-    // eslint-disable-next-line
-    eval(this.state.code + ' add()')
-
+    this.worker.postMessage(this.state.code + ' add()')
     this.props.LevelStore.nextLevel()
   }
 }
