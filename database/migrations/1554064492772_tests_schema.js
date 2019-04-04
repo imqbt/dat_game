@@ -8,8 +8,8 @@ class TestsSchema extends Schema {
     this.create('tests', (table) => {
       table.increments()
 
-      table.text('arguments')
-      table.text('expectedResult')
+      table.text('raw_arguments')
+      table.text('raw_expected_result')
       table.integer('level_id').unsigned().references('id').inTable('levels')
 
       table.timestamps()
