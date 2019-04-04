@@ -6,7 +6,7 @@ class EndGame extends Component {
     const score = this.props.TimerStore.times.map((time, i) => {
       return (
         <div key={i}>
-          votre temps pour le niveau {time.level} est de {time.time}
+          Vous avez fini le niveau {time.level} à {time.time}
         </div>
       )
     })
