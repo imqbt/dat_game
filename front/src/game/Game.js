@@ -19,11 +19,21 @@ class Game extends Component {
     this.worker = new WebWorker(testWorker);
     
     this.worker.addEventListener('message', event => {
-      console.log('event in Game', event)
+      if(event.data.type === 'result') {
+        this.validate(event.data.content);
+      }
+      if(event.data.type === 'error') {
+      }   
     });
   }
 
+  validate = result => {
+    const isValidated =  this.props.LevelStore.currentTest.expectedResult.data === result
+    console.log('is validated ' + isValidated)
+  }
+
   render() {
+    console.log(this.props.TimerStore.times)
     return (
       <div className="Level">
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
@@ -49,7 +59,7 @@ class Game extends Component {
   }
 
   execute = () => {
-    const fn = `${this.props.LevelStore.currentLevel.code}; ${this.props.LevelStore.currentLevel.functionName}(2)`
+    const fn = `${this.props.LevelStore.currentLevel.code}; ${this.props.LevelStore.currentLevel.functionName}(${this.props.LevelStore.currentTest.arguments.data})`
     this.worker.postMessage(fn)
     this.props.LevelStore.nextLevel()
   }
