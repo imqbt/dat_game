@@ -27,9 +27,15 @@ class LevelSeeder {
 `
     }
     const level = await Factory.model('App/Models/Level').create({...levelTemplate})
-    const tests = await Factory.model('App/Models/Test').makeMany(5)
 
-    await level.tests().saveMany(tests)
+    const testTemplates = {
+      rawArguments: JSON.stringify({data: 2}),
+      rawExpectedResult: JSON.stringify({data: 4})
+    }
+
+    const tests = await Factory.model('App/Models/Test').make({...testTemplates})
+
+    await level.tests().save(tests)
   }
 }
 

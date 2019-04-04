@@ -17,11 +17,11 @@ class Test extends Model {
   }
 
   getArguments ({ rawArguments }) {
-    return rawArguments
+    return JSON.parse(rawArguments)
   }
 
   getExpectedResult ({ rawExpectedResult }) {
-    return rawExpectedResult
+    return JSON.parse(rawExpectedResult)
   }
 }
 
