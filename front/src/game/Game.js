@@ -16,7 +16,7 @@ class Game extends Component {
 
   componentDidMount() {
     this.props.LevelStore.loadLevels()
-    setInterval(this.props.TimerStore.incrementTime, 1000)
+    this.props.TimerStore.startTimer()
 
     this.worker = new WebWorker(testWorker);
     

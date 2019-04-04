@@ -9,6 +9,10 @@ class TimerStore {
     this.time = this.time + 1
   }
 
+  startTimer = () => {
+    setInterval(this.incrementTime, 1000)
+  }
+
   get currentTime() {
     const minutes = Math.floor(this.time / 60)
     const seconds = this.time - minutes * 60
