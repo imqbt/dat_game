@@ -13,15 +13,15 @@ class Test extends Model {
   }
 
   static get hidden () {
-    return ['raw_arguments', 'raw_expected_result']
+    return ['rawArguments', 'rawExpectedResult']
   }
 
-  getArguments ({ raw_arguments }) {
-    return raw_arguments
+  getArguments ({ rawArguments }) {
+    return rawArguments
   }
 
-  getExpectedResult ({ raw_expected_result }) {
-    return raw_expected_result
+  getExpectedResult ({ rawExpectedResult }) {
+    return rawExpectedResult
   }
 }
 

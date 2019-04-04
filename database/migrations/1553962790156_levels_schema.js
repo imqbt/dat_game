@@ -11,6 +11,8 @@ class LevelsSchema extends Schema {
       table.uuid('uuid').notNullable().unique()
       table.string('name').notNullable()
       table.string('description').notNullable()
+      table.string('functionName').notNullable()
+      table.text('code').notNullable()
 
       table.timestamps()
     })
