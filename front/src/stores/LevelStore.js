@@ -5,9 +5,25 @@ import {
   decorate,
 } from 'mobx'
 import TimerStore from './TimerStore'
+import WebWorker from '../common/WebWorker'
+import testWorker from '../game/testWorker'
 
-console.log(TimerStore)
 class LevelStore {
+
+  constructor() {
+    this.worker = new WebWorker(testWorker);
+
+    this.worker.addEventListener('message', event => {
+      if(event.data.type === 'result') {
+        this.validate(event.data.content);
+      }
+      if(event.data.type === 'error') {
+      }   
+    });
+  }
+
+  worker
+
   currentLevel = {}
 
   currentLevelId = 0
@@ -19,6 +35,19 @@ class LevelStore {
   currentTestId = 0
 
   test = []
+
+  logs = []
+
+  validate = result => {
+    const isValidated =  this.currentTest.expectedResult.data === result
+    if (isValidated) {
+      this.logs.push('test valider')
+      this.nextTest()
+      this.runTests()
+    } else {
+      this.logs.push('test non valider')
+    }
+  } 
 
   loadLevels = async () => {
     const response = await fetch('/levels')
@@ -39,13 +68,29 @@ class LevelStore {
     })
   }
 
+  runTests = code => {
+    if (!this.currentTestId) {
+      this.nextLevel()
+    }
+    const fn = `${this.currentLevel.code}; ${this.currentLevel.functionName}(${this.currentTest.arguments.data})`
+    this.worker.postMessage(fn)
+  }
+
   nextLevel = () => {
     this.currentLevelId = this.currentLevelId + 1
     TimerStore.saveTime(this.currentLevelId)
     this.currentLevel =
       this.currentLevelId >= this.levels.length
-        ? false
-        : this.levels[this.currentLevelId]
+      ? false
+      : this.levels[this.currentLevelId]
+  }
+
+  nextTest = () => {
+    this.currentTestId = this.currentTestId + 1
+    this.currentTest =
+      this.currentTestId >= this.tests.length
+      ? false
+      : this.tests[this.currentTestId]
   }
 }
 
@@ -55,6 +100,7 @@ decorate(LevelStore, {
   nextLevel: action,
   currentTest: observable,
   tests: observable,
+  logs: observable,
   nextTest: action,
 })
 
