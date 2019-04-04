@@ -32,7 +32,7 @@ Factory.blueprint('App/Models/Level', async (faker) => {
 
 Factory.blueprint('App/Models/Test', async (faker) => {
   return {
-    raw_arguments: faker.string(),
-    raw_expected_result: faker.string(),
+    arguments: faker.string(),
+    expectedResult: faker.string(),
   }
 })
