@@ -1,4 +1,5 @@
 'use strict'
+
 const Level = use('App/Models/Level')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
@@ -11,13 +12,9 @@ class LevelController {
   /**
    * Show a list of all levels.
    * GET levels
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async index ({ request, response }) {
-    return Level.all()
+  async index () {
+    return await Level.all()
   }
 
   /**
@@ -25,12 +22,9 @@ class LevelController {
    * GET levels/:id
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
-  async show ({ params, request, response }) {
-    return Level.findOrFail(params.id)
+  async show ({ params }) {
+    return await Level.findOrFail(params.id)
   }
 }
 

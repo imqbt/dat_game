@@ -13,23 +13,18 @@ class ScoreController {
    * Show a list of all scores.
    * GET scores
    *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async index ({ request, response}) {
-    return Score.query().ordered().fetch()
+  async index () {
+    return await Score.query().ordered().fetch()
   }
 
   /**
    * Create/save a new score.
    * POST scores
    *
-   * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store ({ request }) {
     return await Score.create(request.only(['nickname', 'result']))
   }
 }

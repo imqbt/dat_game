@@ -14,13 +14,11 @@ class TestController {
    * Show a list of all tests.
    * GET tests
    *
-   * @param {object} ctx
    * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async index ({ request, response }) {
+  async index ({ request }) {
     const level = await Level.findByOrFail('uuid', request.params.levels_id)
-    return level.tests().fetch()
+    return await level.tests().fetch()
   }
 
   /**
@@ -28,11 +26,9 @@ class TestController {
    * GET tests/:id
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
-  async show ({ params, request, response }) {
-    return Test.findOrFail(params.id)
+  async show ({ params }) {
+    return await Test.findOrFail(params.id)
   }
 }
 
