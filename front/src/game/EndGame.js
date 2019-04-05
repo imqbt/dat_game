@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import ScoreBoard from './ScoreBoard'
+import Clok from './Clok'
 
 class EndGame extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class EndGame extends Component {
     return this.props.TimerStore.times.map((time, i) => {
       return (
         <div key={i}>
-          Vous avez fini le niveau {time.level} à {time.time}
+          Vous avez fini le niveau {time.level} à <Clok time={time.time}/>
         </div>
       )
     })

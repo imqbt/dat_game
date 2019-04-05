@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import TextField from '@material-ui/core/TextField'
+import Clok from './Clok'
 
 class Timer extends Component {
   render() {
@@ -9,7 +10,7 @@ class Timer extends Component {
         disabled
         id="outlined-disabled"
         label="Temps passé"
-        value={this.props.TimerStore.currentTime}
+        value={Clok({time: this.props.TimerStore.time})}
         margin="normal"
         variant="outlined"
       />

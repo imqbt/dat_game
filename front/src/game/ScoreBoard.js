@@ -5,6 +5,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Clok from './Clok'
 
 class ScoreBoard extends Component {
   render() {
@@ -26,7 +27,7 @@ class ScoreBoard extends Component {
                   {i+1}
                 </TableCell>
                 <TableCell align="left">{score.nickname}</TableCell>
-                <TableCell align="right">{score.result}</TableCell>
+                <TableCell align="right"><Clok time={score.result}/></TableCell>
               </TableRow>
             ))}
           </TableBody>
