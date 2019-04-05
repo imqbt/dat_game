@@ -16,5 +16,6 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.resource('scores', 'ScoreController').only(['index', 'store'])
 Route.resource('levels', 'LevelController').only(['index', 'show'])
 Route.resource('levels.tests', 'TestController').only(['index', 'show'])
