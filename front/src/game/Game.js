@@ -12,6 +12,13 @@ class Game extends Component {
   componentDidMount() {
     this.props.LevelStore.loadLevels()
     this.props.TimerStore.startTimer()
+    document.addEventListener('keydown',this.keydownHandler)
+  }
+
+  keydownHandler = e => {
+    if(e.keyCode === 13 && e.ctrlKey) {
+      this.execute()
+    }
   }
 
   render() {
