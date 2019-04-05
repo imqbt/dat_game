@@ -59,6 +59,7 @@ class LevelStore {
     const levels = await response.json()
     runInAction(() => {
       this.levels = levels
+      this.currentLevelId = 0
       this.currentLevel = this.levels[this.currentLevelId]
       this.loadTests(this.currentLevel.uuid)
     })
@@ -69,13 +70,14 @@ class LevelStore {
     const tests = await response.json()
     runInAction(() => {
       this.tests = tests
+      this.currentTestId = 0
       this.currentTest = this.tests[this.currentTestId]
     })
   }
 
   runTests = code => {
-    if (!this.currentTestId) {
-      this.nextLevel()
+    if (!this.currentTest) {
+      return this.nextLevel()
     }
     const fn = `${this.currentLevel.code}; ${this.currentLevel.functionName}(${
       this.currentTest.arguments.data
@@ -93,7 +95,6 @@ class LevelStore {
         : this.levels[this.currentLevelId]
     if (this.currentLevel !== false) {
       this.loadTests(this.currentLevel.uuid)
-      console.log(this.currentTestId)
     }
   }
 
