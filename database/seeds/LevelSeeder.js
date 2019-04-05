@@ -13,30 +13,70 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
+const seeeeed = [
+  {
+    name: 'Double an integer',
+    description: 'i will be an integer. Double it and return it.',
+    functionName: 'doubleInteger',
+    code: `function doubleInteger(i) {
+    
+    
+    
+}
+`,
+    tests: [
+      {
+        rawArguments: JSON.stringify({data: 2}),
+        rawExpectedResult: JSON.stringify({data: 4})
+      },
+      {
+        rawArguments: JSON.stringify({data: 50}),
+        rawExpectedResult: JSON.stringify({data: 100})
+      }
+    ]
+  },
+  {
+    name: 'Is number even',
+    description: "i will be an integer. Return true if it's even, and false if it isn't.",
+    functionName: 'isNumberEven',
+    code: `function isNumberEven(i) {
+    
+    
+    
+}
+`,
+    tests: [
+      {
+        rawArguments: JSON.stringify({data: 2}),
+        rawExpectedResult: JSON.stringify({data: true})
+      },
+      {
+        rawArguments: JSON.stringify({data: 100}),
+        rawExpectedResult: JSON.stringify({data: true})
+      }
+    ]
+  },
+]
+
 class LevelSeeder {
   async run () {
-    const levelTemplate = {
-      name: 'Double an integer',
-      description: 'i will be an integer. Double it and return it.',
-      functionName: 'doubleInteger',
-      code: `function doubleInteger(i) {
-
-
-
-}
-`
+    const levels = await Factory.model('App/Models/Level').createMany(2, seeeeed)
+    const getTests = async () => {
+      return await Promise.all(
+        levels.map((level, i) => {
+          return Factory.model('App/Models/Test').makeMany(2, seeeeed[i].tests)
+        })
+      )
     }
-    const level = await Factory.model('App/Models/Level').create({...levelTemplate})
-
-    const testTemplates = {
-      rawArguments: JSON.stringify({data: 2}),
-      rawExpectedResult: JSON.stringify({data: 4})
+    const tests = await getTests()
+    const blabla = async () => {
+      return await Promise.all(
+        tests.map((testsLevel, i) => {
+          return levels[i].tests().saveMany(testsLevel)
+        })
+      )
     }
-
-    const test1 = await Factory.model('App/Models/Test').make({...testTemplates})
-    const test2 = await Factory.model('App/Models/Test').make({...testTemplates})
-
-    await level.tests().saveMany([test1, test2])
+    const levelWithTests = await blabla()
   }
 }
 

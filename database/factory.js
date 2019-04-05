@@ -25,17 +25,16 @@ const Factory = use('Factory')
 Factory.blueprint('App/Models/Level', async (faker, i, data) => {
   return {
     uuid: faker.guid(),
-    name: data.name || faker.string(),
-    description: data.description || faker.sentence(),
-    code: data.code || faker.sentence(),
-    functionName: data.functionName || faker.sentence()
+    name: data[i].name || faker.string(),
+    description: data[i].description || faker.sentence(),
+    code: data[i].code || faker.sentence(),
+    functionName: data[i].functionName || faker.sentence()
   }
 })
 
 Factory.blueprint('App/Models/Test', async (faker, i, data) => {
-  console.log(i, data)
   return {
-    rawArguments: data.rawArguments || faker.string(),
-    rawExpectedResult: data.rawExpectedResult || faker.string(),
+    rawArguments: data[i].rawArguments || faker.string(),
+    rawExpectedResult: data[i].rawExpectedResult || faker.string(),
   }
 })
