@@ -89,6 +89,7 @@ class LevelStore {
     this.toogleShowNextLevelAlert()
     this.currentLevelId = this.currentLevelId + 1
     TimerStore.saveTime(this.currentLevelId)
+    this.logs = []
     this.currentLevel =
       this.currentLevelId >= this.levels.length
         ? false
