@@ -9,3 +9,6 @@ tmp
 
 # The development database file
 storage
+
+# The front file build file
+public
