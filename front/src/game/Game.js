@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import { observer, inject } from 'mobx-react'
 import { Redirect } from 'react-router'
-import Snackbar from '@material-ui/core/Snackbar'
+import Toastr from './Toastr'
 import Timer from './Timer'
 import Editor from './Editor'
 
@@ -22,17 +22,7 @@ class Game extends Component {
 
     return (
       <div className="Level">
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={this.props.LevelStore.showNextLevelAlert}
-          autoHideDuration={3000}
-          message={
-            <span id="message-id">Bravo, vous passez au niveau suivant</span>
-          }
-        />
+        <Toastr />
         <h1>{this.props.LevelStore.currentLevel.name}</h1>
         <Timer />
         <Editor />
