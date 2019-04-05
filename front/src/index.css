@@ -33,7 +33,7 @@ body {
   padding: 0;
 }
 
-.Level {
+.Level, .EndGame {
   padding-left: 10%;
   padding-right: 10%;
 }

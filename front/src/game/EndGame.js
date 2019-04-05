@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
+import ScoreBoard from './ScoreBoard'
 
 class EndGame extends Component {
+  componentDidMount() {
+    this.props.ScoreStore.loadScores()
+  }
+
   render() {
     return (
-      <div>
+      <div className="EndGame">
         Bravo, vous avez fini le jeu
         <h2>Votre score est:</h2>
         {this.hasCheated() ? <h1>TRICHEUR!!!</h1> : this.score()}
+        <ScoreBoard />
       </div>
     )
   }
@@ -35,4 +41,4 @@ class EndGame extends Component {
   }
 }
 
-export default inject('TimerStore', 'LevelStore')(observer(EndGame))
+export default inject('TimerStore', 'LevelStore', 'ScoreStore')(observer(EndGame))
