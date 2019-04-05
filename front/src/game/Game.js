@@ -29,7 +29,7 @@ class Game extends Component {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => this.execute()}
+          onClick={this.execute}
         >
           Tester
         </Button>
