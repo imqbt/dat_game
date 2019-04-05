@@ -23,7 +23,7 @@ class EndGame extends Component {
     return this.props.TimerStore.times.map((time, i) => {
       return (
         <div key={i}>
-          Vous avez fini le niveau {time.level} à <Clok time={time.time}/>
+          Vous avez fini le niveau {time.level} à <Clok time={time.time} />
         </div>
       )
     })
@@ -42,4 +42,6 @@ class EndGame extends Component {
   }
 }
 
-export default inject('TimerStore', 'LevelStore', 'ScoreStore')(observer(EndGame))
+export default inject('TimerStore', 'LevelStore', 'ScoreStore')(
+  observer(EndGame)
+)

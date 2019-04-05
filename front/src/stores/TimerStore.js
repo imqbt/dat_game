@@ -1,4 +1,4 @@
-import { observable, computed, action, decorate } from 'mobx'
+import { observable, action, decorate } from 'mobx'
 
 class TimerStore {
   time = 0

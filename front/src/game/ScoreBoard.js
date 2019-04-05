@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 import Clok from './Clok'
 
 class ScoreBoard extends Component {
@@ -23,11 +23,11 @@ class ScoreBoard extends Component {
           <TableBody>
             {this.props.ScoreStore.scores.map((score, i) => (
               <TableRow key={i}>
-                <TableCell>
-                  {i+1}
-                </TableCell>
+                <TableCell>{i + 1}</TableCell>
                 <TableCell align="left">{score.nickname}</TableCell>
-                <TableCell align="right"><Clok time={score.result}/></TableCell>
+                <TableCell align="right">
+                  <Clok time={score.result} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

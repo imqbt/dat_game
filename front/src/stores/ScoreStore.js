@@ -1,7 +1,6 @@
-import { runInAction, observable, action, decorate } from 'mobx'
+import { runInAction, observable, decorate } from 'mobx'
 
 class ScoreStore {
-
   scores = []
 
   loadScores = async () => {

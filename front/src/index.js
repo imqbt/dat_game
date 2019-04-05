@@ -14,7 +14,11 @@ import LevelStore from './stores/LevelStore'
 import ScoreStore from './stores/ScoreStore'
 
 const providerAndRouting = (
-  <Provider ScoreStore={ScoreStore} LevelStore={LevelStore} TimerStore={TimerStore}>
+  <Provider
+    ScoreStore={ScoreStore}
+    LevelStore={LevelStore}
+    TimerStore={TimerStore}
+  >
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />

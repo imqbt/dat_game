@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 import { observer, inject } from 'mobx-react'
 import { Redirect } from 'react-router'
 import Toastr from './Toastr'
@@ -12,11 +12,11 @@ class Game extends Component {
   componentDidMount() {
     this.props.LevelStore.loadLevels()
     this.props.TimerStore.startTimer()
-    document.addEventListener('keydown',this.keydownHandler)
+    document.addEventListener('keydown', this.keydownHandler)
   }
 
   keydownHandler = e => {
-    if(e.keyCode === 13 && e.ctrlKey) {
+    if (e.keyCode === 13 && e.ctrlKey) {
       this.execute()
     }
   }
@@ -46,11 +46,7 @@ class Game extends Component {
         </Grid>
         <Grid container spacing={24}>
           <Grid item xs={8}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.execute}
-            >
+            <Button variant="contained" color="primary" onClick={this.execute}>
               Tester votre code
             </Button>
           </Grid>

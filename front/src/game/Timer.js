@@ -10,7 +10,7 @@ class Timer extends Component {
         disabled
         id="outlined-disabled"
         label="Temps passé"
-        value={Clok({time: this.props.TimerStore.time})}
+        value={Clok({ time: this.props.TimerStore.time })}
         margin="normal"
         variant="outlined"
       />
