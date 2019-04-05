@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "node ace test",
+    "heroku-postbuild": "cd front && npm run build && mv build ../public"
   },
   "keywords": [
     "adonisjs",
