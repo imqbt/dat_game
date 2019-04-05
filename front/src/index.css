@@ -33,6 +33,11 @@ body {
   padding: 0;
 }
 
+.Level {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
 /* App */
 .container {
   display: flex;
