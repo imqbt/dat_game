@@ -11,9 +11,10 @@ import { Provider } from 'mobx-react'
 import {} from 'mobx-react'
 import TimerStore from './stores/TimerStore'
 import LevelStore from './stores/LevelStore'
+import ScoreStore from './stores/ScoreStore'
 
 const providerAndRouting = (
-  <Provider LevelStore={LevelStore} TimerStore={TimerStore}>
+  <Provider ScoreStore={ScoreStore} LevelStore={LevelStore} TimerStore={TimerStore}>
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
