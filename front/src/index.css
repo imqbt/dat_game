@@ -8,6 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a:link {
+  text-decoration: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -31,11 +35,17 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  background-color: grey;
 }
 
-.Level, .EndGame {
-  padding-left: 10%;
-  padding-right: 10%;
+.Home, .Level, .EndGame {
+  margin-top: 60px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: white;
+  padding: 25px;
+
+  box-shadow: 10px 5px 5px black;
 }
 
 /* App */
