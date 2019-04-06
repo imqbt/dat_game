@@ -7,32 +7,34 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Clok from './Clok'
 
-const ScoreBoard = inject('ScoreStore')(observer(({ ScoreStore }) => {
-  return (
-    <div>
-      <h2>Résultats:</h2>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Classement</TableCell>
-            <TableCell>Joueur</TableCell>
-            <TableCell align="right">Score</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {ScoreStore.scores.map((score, i) => (
-            <TableRow key={i}>
-              <TableCell>{i + 1}</TableCell>
-              <TableCell align="left">{score.nickname}</TableCell>
-              <TableCell align="right">
-                <Clok time={score.result} />
-              </TableCell>
+const ScoreBoard = inject('ScoreStore')(
+  observer(({ ScoreStore }) => {
+    return (
+      <div>
+        <h2>Résultats:</h2>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Classement</TableCell>
+              <TableCell>Joueur</TableCell>
+              <TableCell align="right">Score</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
-  )
-}))
+          </TableHead>
+          <TableBody>
+            {ScoreStore.scores.map((score, i) => (
+              <TableRow key={i}>
+                <TableCell>{i + 1}</TableCell>
+                <TableCell align="left">{score.nickname}</TableCell>
+                <TableCell align="right">
+                  <Clok time={score.result} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    )
+  })
+)
 
 export default ScoreBoard

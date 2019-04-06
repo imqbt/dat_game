@@ -44,7 +44,11 @@ class Game extends Component {
         </Grid>
         <Grid container spacing={24}>
           <Grid item xs={8}>
-            <Button variant="contained" color="primary" onClick={this.props.LevelStore.runTests}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.props.LevelStore.runTests}
+            >
               Tester votre code
             </Button>
           </Grid>

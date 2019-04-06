@@ -23,16 +23,22 @@ const score = times => {
   })
 }
 
-const EndGame = inject('TimerStore', 'LevelStore', 'ScoreStore')(observer(({ TimerStore, LevelStore, ScoreStore }) => {
-  ScoreStore.loadScores()
-  return (
-    <div className="EndGame">
-      Bravo, vous avez fini le jeu
-      <h2>Votre score est:</h2>
-      {hasCheated(TimerStore.times, LevelStore.levels) ? <h1>TRICHEUR!!!</h1> : score(TimerStore.times)}
-      <ScoreBoard />
-    </div>
-  )
-}))
+const EndGame = inject('TimerStore', 'LevelStore', 'ScoreStore')(
+  observer(({ TimerStore, LevelStore, ScoreStore }) => {
+    ScoreStore.loadScores()
+    return (
+      <div className="EndGame">
+        Bravo, vous avez fini le jeu
+        <h2>Votre score est:</h2>
+        {hasCheated(TimerStore.times, LevelStore.levels) ? (
+          <h1>TRICHEUR!!!</h1>
+        ) : (
+          score(TimerStore.times)
+        )}
+        <ScoreBoard />
+      </div>
+    )
+  })
+)
 
 export default EndGame

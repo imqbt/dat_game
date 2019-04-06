@@ -5,7 +5,8 @@ import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 
-const Editor = inject('LevelStore')(observer(({ LevelStore }) => {
+const Editor = inject('LevelStore')(
+  observer(({ LevelStore }) => {
     return (
       <InputEditor
         value={LevelStore.currentLevel.code || ''}
@@ -18,6 +19,7 @@ const Editor = inject('LevelStore')(observer(({ LevelStore }) => {
         }}
       />
     )
-}))
+  })
+)
 
 export default Editor
