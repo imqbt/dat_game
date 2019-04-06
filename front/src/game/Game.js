@@ -17,7 +17,7 @@ class Game extends Component {
 
   keydownHandler = e => {
     if (e.keyCode === 13 && e.ctrlKey) {
-      this.execute()
+      this.props.LevelStore.runTests()
     }
   }
 
@@ -44,7 +44,7 @@ class Game extends Component {
         </Grid>
         <Grid container spacing={24}>
           <Grid item xs={8}>
-            <Button variant="contained" color="primary" onClick={this.execute}>
+            <Button variant="contained" color="primary" onClick={this.props.LevelStore.runTests}>
               Tester votre code
             </Button>
           </Grid>
@@ -54,10 +54,6 @@ class Game extends Component {
         </Grid>
       </div>
     )
-  }
-
-  execute = () => {
-    this.props.LevelStore.runTests()
   }
 }
 
