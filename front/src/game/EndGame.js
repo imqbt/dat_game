@@ -2,6 +2,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import ScoreBoard from './ScoreBoard'
 import Clok from './Clok'
+import MyScore from './MyScore'
 
 const hasCheated = (times, levels) => {
   if (times.length === 0) {
@@ -33,7 +34,7 @@ const EndGame = inject('TimerStore', 'LevelStore', 'ScoreStore')(
         {hasCheated(TimerStore.times, LevelStore.levels) ? (
           <h1>TRICHEUR!!!</h1>
         ) : (
-          score(TimerStore.times)
+          <MyScore />
         )}
         <ScoreBoard />
       </div>
