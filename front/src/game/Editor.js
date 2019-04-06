@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { observer, inject } from 'mobx-react'
 import InputEditor from 'react-simple-code-editor'
 import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 
-class Editor extends Component {
-  render() {
+const Editor = inject('LevelStore')(observer(({ LevelStore }) => {
     return (
       <InputEditor
-        value={this.props.LevelStore.currentLevel.code || ''}
-        onValueChange={code => (this.props.LevelStore.currentLevel.code = code)}
+        value={LevelStore.currentLevel.code || ''}
+        onValueChange={code => (LevelStore.currentLevel.code = code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
         style={{
@@ -19,7 +18,6 @@ class Editor extends Component {
         }}
       />
     )
-  }
-}
+}))
 
-export default inject('LevelStore')(observer(Editor))
+export default Editor
