@@ -15,6 +15,7 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
+  '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/lucid/providers/LucidProvider'
 ]
 
