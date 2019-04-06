@@ -1,6 +1,7 @@
 'use strict'
 
 const Score = use('App/Models/Score')
+const { validate } = use('Validator')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -25,6 +26,17 @@ class ScoreController {
    * @param {Request} ctx.request
    */
   async store ({ request }) {
+    const rules = {
+      nickname: 'required|string',
+      result: 'required|integer'
+    }
+
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      return validation.messages()
+    }
+
     return await Score.create(request.only(['nickname', 'result']))
   }
 }
