@@ -1,47 +1,38 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { observer, inject } from 'mobx-react'
 import ScoreBoard from './ScoreBoard'
 import Clok from './Clok'
 
-class EndGame extends Component {
-  componentDidMount() {
-    this.props.ScoreStore.loadScores()
+const hasCheated = (times, levels) => {
+  if (times.length === 0) {
+    return true
   }
-
-  render() {
-    return (
-      <div className="EndGame">
-        Bravo, vous avez fini le jeu
-        <h2>Votre score est:</h2>
-        {this.hasCheated() ? <h1>TRICHEUR!!!</h1> : this.score()}
-        <ScoreBoard />
-      </div>
-    )
+  if (times.length !== levels.length) {
+    return true
   }
-
-  score = () => {
-    return this.props.TimerStore.times.map((time, i) => {
-      return (
-        <div key={i}>
-          Vous avez fini le niveau {time.level} à <Clok time={time.time} />
-        </div>
-      )
-    })
-  }
-
-  hasCheated = () => {
-    if (this.props.TimerStore.times.length === 0) {
-      return true
-    }
-    if (
-      this.props.TimerStore.times.length !== this.props.LevelStore.levels.length
-    ) {
-      return true
-    }
-    return false
-  }
+  return false
 }
 
-export default inject('TimerStore', 'LevelStore', 'ScoreStore')(
-  observer(EndGame)
-)
+const score = times => {
+  return times.map((time, i) => {
+    return (
+      <div key={i}>
+        Vous avez fini le niveau {time.level} à <Clok time={time.time} />
+      </div>
+    )
+  })
+}
+
+const EndGame = inject('TimerStore', 'LevelStore', 'ScoreStore')(observer(({ TimerStore, LevelStore, ScoreStore }) => {
+  ScoreStore.loadScores()
+  return (
+    <div className="EndGame">
+      Bravo, vous avez fini le jeu
+      <h2>Votre score est:</h2>
+      {hasCheated(TimerStore.times, LevelStore.levels) ? <h1>TRICHEUR!!!</h1> : score(TimerStore.times)}
+      <ScoreBoard />
+    </div>
+  )
+}))
+
+export default EndGame
