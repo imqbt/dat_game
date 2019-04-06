@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import { observer, inject } from 'mobx-react'
 import { Redirect } from 'react-router'
 import Toastr from './Toastr'
 import Timer from './Timer'
 import Editor from './Editor'
+import Logs from './Logs'
 
 class Game extends Component {
   componentDidMount() {
@@ -25,8 +25,6 @@ class Game extends Component {
     if (!this.props.LevelStore.currentLevel) {
       return <Redirect to="/endgame" push={true} />
     }
-
-    const logs = this.props.LevelStore.logs.join('\n')
 
     return (
       <div className="Level">
@@ -51,16 +49,7 @@ class Game extends Component {
             </Button>
           </Grid>
           <Grid item xs={4}>
-            <TextField
-              disabled
-              multiline
-              rowsMax="5"
-              id="outlined-disabled"
-              label="Logs"
-              value={logs}
-              margin="normal"
-              variant="outlined"
-            />
+            <Logs />
           </Grid>
         </Grid>
       </div>

@@ -19,4 +19,3 @@ const Toastr = inject('LevelStore')(observer(({ LevelStore }) => {
 }))
 
 export default Toastr
-
