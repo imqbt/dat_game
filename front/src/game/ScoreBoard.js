@@ -11,7 +11,7 @@ const ScoreBoard = inject('ScoreStore')(
   observer(({ ScoreStore }) => {
     return (
       <div>
-        <h2>Résultats:</h2>
+        <h2>Top 10 résultats:</h2>
         <Table>
           <TableHead>
             <TableRow>
