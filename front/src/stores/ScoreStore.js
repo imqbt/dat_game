@@ -19,16 +19,16 @@ class ScoreStore {
 
     const form = {
       nickname: this.nickname,
-      result: TimerStore.times[TimerStore.times.length - 1].time
+      result: TimerStore.times[TimerStore.times.length - 1].time,
     }
 
-    await fetch("/scores", {
+    await fetch('/scores', {
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      method: "POST",
-      body: JSON.stringify(form)
+      method: 'POST',
+      body: JSON.stringify(form),
     })
 
     this.showScoreForm = false
