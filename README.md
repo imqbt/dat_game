@@ -1,28 +1,87 @@
-# Adonis API application
+# DAT GAME
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
+this is a game with node/adonis on backend and react/mobx on frontend
 
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
+[demo!!!](https://dat-game.herokuapp.com/)
 
-## Setup
 
-Use the adonis command to install the blueprint
+## Requirements
+
+- npm >= 6.4.1
+- node >= 9.1.0
+- docker
+- docker-compose
+
+## Backend setup
+
+start database (mysql)
 
 ```bash
-adonis new yardstick --api-only
+docker-compose up
 ```
 
-or manually clone the repo and then run `npm install`.
+install backend
+```bash
+npm install
+```
+
+set env
+```bash
+cp .env.example .env
+```
+
+run database migrations
+```bash
+node ace migration:run
+```
+
+run database seeds
+```bash
+node ace seed
+```
+
+## Start backend
+
+start backend server
+```bash
+npm start
+```
+
+## Frontend setup
+
+move to frontend directory
+```bash
+cd front 
+```
+
+install dependencies
+```bash
+npm install
+```
+
+## Start frontent
+
+start frontend server
+```bash
+npm start
+```
 
 
-### Migrations
+## Deploy on heroku
 
-Run the following command to run startup migrations.
+### Requirements
 
-```js
-adonis migration:run
+- heroku cli
+
+### set heroku
+
+Run the following command to the app to git config.
+
+```bash
+heroku git:clone -a app-name
+```
+
+### deploy
+```bash
+git push heroku master
 ```
