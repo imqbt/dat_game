@@ -32,6 +32,7 @@ class Game extends Component {
         <Grid container spacing={24}>
           <Grid item xs={8}>
             <h1>{this.props.LevelStore.currentLevel.name}</h1>
+            <span>{this.props.LevelStore.currentLevel.description}</span>
           </Grid>
           <Grid item xs={3}>
             <Timer />
