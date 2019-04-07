@@ -101,8 +101,8 @@ class LevelStore {
     this.logs = []
     this.currentLevel =
       this.currentLevelId >= this.levels.length
-      ? false
-      : this.levels[this.currentLevelId]
+        ? false
+        : this.levels[this.currentLevelId]
     if (this.currentLevel !== false) {
       this.loadTests(this.currentLevel.uuid)
     }
@@ -112,8 +112,8 @@ class LevelStore {
     this.currentTestId = this.currentTestId + 1
     this.currentTest =
       this.currentTestId >= this.tests.length
-      ? false
-      : this.tests[this.currentTestId]
+        ? false
+        : this.tests[this.currentTestId]
   }
 }
 

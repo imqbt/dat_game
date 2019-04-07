@@ -23,7 +23,10 @@ class EndGame extends Component {
     const scoreForm = this.props.ScoreStore.showScoreForm ? (
       <ScoreForm />
     ) : (
-      <div><br />Votre participation est enregistré</div>
+      <div>
+        <br />
+        Votre participation est enregistré
+      </div>
     )
     return (
       <div className="EndGame">
