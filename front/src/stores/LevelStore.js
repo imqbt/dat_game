@@ -12,6 +12,7 @@ class LevelStore {
         this.validate(event.data.content)
       }
       if (event.data.type === 'error') {
+        this.onError(event.data.content)
       }
     })
   }
@@ -35,14 +36,22 @@ class LevelStore {
   logs = []
 
   validate = result => {
-    const isValidated = this.currentTest.expectedResult.data === result
-    if (isValidated) {
-      this.logs.push('test valider')
+    const expectedResult = this.currentTest.expectedResult.data
+    this.logs.push('--------------------')
+    this.logs.push(`>> Votre résultat: ${result}`)
+    this.logs.push(`>> Résultat attendu: ${expectedResult}`)
+    if (result === expectedResult) {
+      this.logs.push('>> OK, test valider')
       this.nextTest()
       this.runTests()
     } else {
-      this.logs.push('test non valider')
+      this.logs.push('>> KO, test non valider')
     }
+  }
+
+  onError = error => {
+    this.logs.push('--------------------')
+    this.logs.push(`>> Erreur: ${error}`)
   }
 
   toogleShowNextLevelAlert = () => {
@@ -92,8 +101,8 @@ class LevelStore {
     this.logs = []
     this.currentLevel =
       this.currentLevelId >= this.levels.length
-        ? false
-        : this.levels[this.currentLevelId]
+      ? false
+      : this.levels[this.currentLevelId]
     if (this.currentLevel !== false) {
       this.loadTests(this.currentLevel.uuid)
     }
@@ -103,8 +112,8 @@ class LevelStore {
     this.currentTestId = this.currentTestId + 1
     this.currentTest =
       this.currentTestId >= this.tests.length
-        ? false
-        : this.tests[this.currentTestId]
+      ? false
+      : this.tests[this.currentTestId]
   }
 }
 

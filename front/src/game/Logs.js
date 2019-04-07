@@ -9,7 +9,6 @@ const Logs = inject('LevelStore')(
       <TextField
         disabled
         multiline
-        rowsMax="5"
         id="outlined-disabled"
         label="Logs"
         value={logs}
