@@ -88,9 +88,9 @@ class LevelStore {
     if (!this.currentTest) {
       return this.nextLevel()
     }
-    const fn = `${this.currentLevel.code}; ${this.currentLevel.functionName}(${
+    const fn = `${this.currentLevel.code}; ${this.currentLevel.functionName}('${
       this.currentTest.arguments.data
-    })`
+    }')`
     this.worker.postMessage(fn)
   }
 
